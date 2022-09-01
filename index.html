@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>EDWARD</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="node_modules/@shower/material/styles/styles.css">
+    <link rel="stylesheet" href="ugent.css">
+</head>
+<body class="shower list">
+
+    <header class="caption">
+        <h1>Event-based Out-of-place Debugging</h1>
+        <p>Tom Lauwaerts, Carlos Rojas Castlilo, Robbert Gurdeep Singh, Matteo Marra, Christophe Scholliers, Elisa Gonzalez Boix</p>
+    </header>
+
+    <section class="title slide"> <!-- 1 -->
+        <h2 class="title">Event-based Out-of-place Debugging</h2>
+        <p class="authors">Tom&nbspLauwaerts, Carlos&nbspRojas&nbspCastlilo, Robbert&nbspGurdeep&nbspSingh, Matteo&nbspMarra, Christophe&nbspScholliers, Elisa&nbspGonzalez&nbspBoix</p>
+        <div class="container">
+                <a class="invisible link" href="https://www.ugent.be/">
+                    <img class="logo" src="pictures/ugent.png"  alt="Ghent University"></a>
+                <a class="invisible" href="https://www.vub.be/">
+                    <img class="logo" src="https://www.vub.be/sites/vub/flies/vub_sponsor_logo_digitaal.jpg" alt="Vrije Universiteit Brussel"></a>
+                <a class="invisible" href="https://www.fwo.be/">
+                    <img id="fwo" class="logo" src="pictures/fwo.jpg" alt="Research Foundation Flanders"></a>
+        </div>
+        <!--
+            We wlil present a novel debugging technique we developed at the Free University of Brussels and Ghent University, which we have called event based out-of-place debugging. I wlil start with
+            - what set us on this course to a new debugging technique
+            - before continuing with how we arrived at event-based out-of-place debugging
+            - and how it works.
+            We also implemented a prototype of our technique.
+            But I wlil not be giving a full demonstration now, because we have a separate demo presentation at this conference.
+        --->
+    </section>
+
+    <section class="slide"> <!-- 2 -->
+        <h2 class="title">Challenges of Debugging Microcontrollers</h2>
+        <!-- So our journey started when we noticed that there is a serious lack of debugging facliities when developing IoT applications on microcontrollers.
+            *sketch the situations*
+        -->
+
+        <!-- <img class="place bottom right" style="width: 17%;" src="pictures/ugent.png"> -->
+    </section>
+
+    <section class="slide"> <!-- 3 -->
+        <h2 class="title">Remote Debugging in WARDuino</h2>
+        <div class="container">
+        <img class="scaled" src="pictures/remote-debugging.svg" alt="Remote debugging schematically.">
+        </div>
+    </section>
+
+    <!--
+    <section class="slide">
+        <h2 class="title">The Disadvantages of Remote Debugging</h2>
+            TODO the same image but annotated to show:
+            - latency
+            - debugger runs on mcu along side vm (constraint resources)
+    </section>
+    -->
+
+    <section class="slide"> <!-- 5 -->
+        <h2 class="title">Out-of-place Debugging</h2>
+        <img class="cover width place bottom" src="pictures/oop-debugging.svg" alt="Move debugging process to the desktop environment.">
+        <!-- TODO: make figure horizontal -->
+        <!-- The idea is to move the debugging process to the laptop or desktop env -->
+    </section>
+
+    <section class="slide"> <!-- 6 -->
+        <h2 class="title">Non-transferable Resources</h2>
+        <img class="cover width place bottom" src="pictures/ntr.svg" alt="Non-transferable resources cannot be moved to the desktop environment.">
+        <!--
+            The non-transferable resources are the major challenge.
+            What are they? And wy are they a challenge?
+        -->
+    </section>
+
+    <section class="slide"> <!-- 7 -->
+        <h2 class="title">Accessing Pull-based Resources</h2>
+        <div class="container">
+            <img class="scaled" src="pictures/oopdebugging.svg" alt="Pull-based remote debugging.">
+        </div>
+    </section>
+
+    <section class="slide"> <!-- 8 -->
+        <h2 class="title">Accessing Push-based Resources</h2>
+        <div class="container">
+            <img class="scaled" src="pictures/oopdebugging.svg" alt="Push-based remote debugging.">
+        </div>
+    </section>
+
+    <section class="slide"> <!-- 9 -->
+        <h2 class="title">Capturing a Debug Session</h2>
+        <div class="container">
+            <img class="scaled" src="pictures/capture.svg" alt="Capturing a remote debugging session.">
+        </div>
+        <!-- since non-transferable resources are handled by the remote device, capturing and transfering the debug session comes down to capturing the state of the vm. -->
+    </section>
+
+    <section class="slide"> <!-- 10 -->
+        <h2 class="title">Implementing a Prototype: EDWARD</h2>
+    </section>
+
+    <section class="slide"> <!-- 11 -->
+        <h2 class="title">Conclusion</h2>
+        To implement a out-of-place debugger you need a vm that can:
+        <ul>
+            <li>capture the state of the vm</li>
+            <li>support pull-based debug messages</li>
+            <li>support push-based debug messages to forward events</li>
+        </ul>
+    </section>
+
+    <!-- TODO ... -->
+
+    <footer class="badge">
+        <a href="https://github.com/TOPLLab/WARDuino">Our code is on GitHub</a>
+    </footer>
+
+    <div class="progress"></div>
+
+    <script src="node_modules/@shower/core/dist/shower.js"></script>
+</body>
+</html>
