@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>EDWARD</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="shower/themes/material/styles/styles.css">
+    <link rel="stylesheet" href="ugent.css">
+
+    <!-- Add syntax highlighting -->
+    <link rel="stylesheet" href="lib/highlight/styles/github.min.css">
+    <!--<script src="/lib/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>-->
+
+</head>
+<body class="shower list">
+
+    <!--
+        Add running example
+        Animations for figures
+
+        Before VSCode
+        for the vm implementers in the room, if you want to add this to your vm you need to
+        +
+        +
+        +
+        VSCode = advertisement for demo
+        Add benchmarks
+    -->
+
+    <header class="caption">
+        <h1>Event-based Out-of-place Debugging</h1>
+        <p>Tom Lauwaerts, Carlos Rojas Castlilo, Robbert Gurdeep Singh, Matteo Marra, Christophe Scholliers, Elisa Gonzalez Boix</p>
+    </header>
+
+    <section class="title slide"> <!-- 1 -->
+        <h2 class="title">Event-based Out-of-place Debugging</h2>
+        <p class="authors"><b>Tom&nbspLauwaerts</b>, Carlos&nbspRojas&nbspCastlilo, Robbert&nbspGurdeep&nbspSingh, Matteo&nbspMarra, Christophe&nbspScholliers, Elisa&nbspGonzalez&nbspBoix</p>
+        <div class="container">
+                <!-- <a class="invisible" href="https://www.vub.be/"> -->
+                    <img class="logo" src="pictures/vub.jpg" alt="Vrije Universiteit Brussel">
+                <!-- </a> -->
+                <!-- <a class="invisible link" href="https://www.ugent.be/"> -->
+                    <img class="logo" src="pictures/ugent.png"  alt="Ghent University">
+                <!-- </a> -->
+                <!-- <a class="invisible" href="https://www.fwo.be/"> -->
+                    <img id="fwo" class="logo" src="pictures/fwo.jpg" alt="Research Foundation Flanders">
+                <!-- </a> -->
+        </div>
+        <!--
+            We wlil present a novel debugging technique we developed at the Free University of Brussels and Ghent University, which we have called event based out-of-place debugging. I wlil start with
+            - what set us on this course to a new debugging technique
+            - before continuing with how we arrived at event-based out-of-place debugging
+            - and how it works.
+            We also implemented a prototype of our technique.
+            But I wlil not be giving a full demonstration now, because we have a separate demo presentation at this conference.
+        --->
+    </section>
+
+    <section class="slide"> <!-- 2 -->
+        <h2 class="title">Challenges of Debugging Microcontrollers</h2>
+        <!-- So our journey started when we noticed that there is a serious lack of debugging facliities when developing IoT applications on microcontrollers.
+            *sketch the situations*
+        -->
+        <div class="container">
+            <img src="pictures/how-to-debug.svg" style="width: 80%;" alt="How to debug a microcontroller?">
+        </div>
+
+        <!-- <img class="place bottom right" style="width: 17%;" src="pictures/ugent.png"> -->
+    </section>
+
+    <section class="slide">
+        <h2 class="title">An Inconspicuous Bug</h2>
+        <div class="container">
+            <pre>
+            <code class="typescript hljs language-typescript">
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> wd <span class="hljs-keyword">from</span> warduino;
+<span class="hljs-keyword">const</span> <span class="hljs-attr">LED</span>: u32 = <span class="hljs-number">25</span>; <span class="hljs-keyword">const</span> <span class="hljs-attr">BUTTON</span>: u32 = <span class="hljs-number">26</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">buttonPressed</span>(<span class="hljs-params"></span>): <span class="hljs-built_in">void</span> {
+  wd.<span class="hljs-title function_">digitalWrite</span>(<span class="hljs-variable constant_">LED</span>, !wd.<span class="hljs-title function_">digitalRead</span>(<span class="hljs-variable constant_">LED</span>));
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>) : <span class="hljs-built_in">void</span> {
+  wd.<span class="hljs-title function_">interruptOn</span>(<span class="hljs-variable constant_">BUTTON</span>, wd.<span class="hljs-property">FALLING</span>, buttonPressed);
+  <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>);
+}
+            </code>
+            </pre>
+        </div>
+    </section>
+
+    <section class="slide"> <!-- 2 -->
+        <h2 class="title">An Inconspicuous Bug</h2>
+        <!-- So our journey started when we noticed that there is a serious lack of debugging facliities when developing IoT applications on microcontrollers.
+            *sketch the situations*
+        -->
+        <div class="container">
+            <pre>
+            <code class="typescript hljs language-typescript">
+import * as wd from warduino;
+const LED: u32 = 25; const BUTTON: u32 = 26;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">buttonPressed</span>(<span class="hljs-params"></span>): <span class="hljs-built_in">void</span> {
+  <span class="hljs-keyword">const</span> <span class="hljs-attr">current</span>: u32 = wd.<span class="hljs-title function_">digitalRead</span>(<span class="hljs-variable constant_">LED</span>);
+  wd.<span class="hljs-title function_">print</span>(<span class="hljs-string">`Entered callback: LED = <span class="hljs-subst">${current}</span>`</span>)
+  wd.<span class="hljs-title function_">digitalWrite</span>(<span class="hljs-variable constant_">LED</span>, !current);
+}
+
+export function main() : void {
+  wd.interruptOn(BUTTON, wd.FALLING, buttonPressed);
+  while(true);
+}
+            </code>
+            </pre>
+
+        <code class="typescript hljs language-typescript">
+        </code>
+        </div>
+
+        <!-- <img class="place bottom right" style="width: 17%;" src="pictures/ugent.png"> -->
+    </section>
+
+    <section class="slide"> <!-- 3 -->
+        <h2 class="title">Traditional Remote Debugging</h2>
+        <div class="container">
+        <img class="scaled-1" src="pictures/flash.svg" alt="Remote debugging schematically.">
+        </div>
+
+    <p class="place bottom citation">
+        Robbert Gurdeep Singh, and Christophe Scholliers. 2019. WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.
+    </p>
+    </section>
+
+    <section class="slide"> <!-- 3 -->
+        <h2 class="title">Traditional Remote Debugging</h2>
+        <div class="container">
+        <img class="scaled-1" src="pictures/debugger-on-microcontroller.svg" alt="Remote debugging schematically.">
+        </div>
+
+    <p class="place bottom citation">
+        Robbert Gurdeep Singh, and Christophe Scholliers. 2019. WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.
+    </p>
+    </section>
+
+    <section class="slide"> <!-- 3 -->
+        <h2 class="title">Traditional Remote Debugging</h2>
+        <div class="container">
+        <img class="scaled-1" src="pictures/remote-debugging.svg" alt="Remote debugging schematically.">
+        <!-- go over image, developer'sm achine vs debugger backend, A, B, C, VM, Debug monitor, Debug manager, Debug Views.
+            conclude = This turns out to work quite well, and I refer anyone who wants to implement this themselves in their own vm to the original WARDuino paper, which goes into more detail and provide a formal semantics that lays out how to implement this.
+
+            However, there are quite a few disadvantages to this simple system ... (!)
+        -->
+        </div>
+
+    <p class="place bottom citation">
+        Robbert Gurdeep Singh, and Christophe Scholliers. 2019. WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.
+    </p>
+    </section>
+
+    <!--
+    <section class="slide">
+        <h2 class="title">The Disadvantages of Remote Debugging</h2>
+            TODO the same image but annotated to show:
+            - latency
+            - debugger runs on mcu along side vm (constraint resources)
+    </section>
+    -->
+
+    <section class="slide"> <!-- 5 -->
+        <h2 class="title">Out-of-place Debugging</h2>
+        <img class="cover width place bottom" src="pictures/out-of-place.svg" alt="Move debugging process to the desktop environment.">
+        <!-- This is where out-of-place debugging comes in. You can see the attraction. We simply move the debugging process to the developer's machine. No more latency or constraint resources to keep in mind.
+            But we cannot actually move the debugging process like that because it means also moving the vm and executing on the developer's machine.
+        -->
+    <p class="place bottom citation">
+        Matteo Marra, Guillermo Polito, Elisa Gonzalez Boix. 2018. WARDuino: Out-of-place debugging: A debugging architecture to reduce debugging interference.
+    </p>
+    </section>
+
+    <section class="slide"> <!-- 6 -->
+        <h2 class="title">Non-transferable Resources</h2>
+        <img class="cover width place bottom" src="pictures/non-transferable-resources.svg" alt="Non-transferable resources cannot be moved to the desktop environment.">
+        <!--
+            The non-transferable resources are the major challenge.
+            What are they? And wy are they a challenge?
+        -->
+    </section>
+
+    <section class="slide">
+        <h2 class="title">Distinquishing Non-transferable Resources</h2>
+        <div class="container">
+        <pre><code class="typescript">
+import * as wd from warduino;
+const LED: u32 = 25;
+const BUTTON: u32 = 26;
+
+function buttonPressed(): void {
+  wd.digitalWrite(LED, !wd.digitalRead(LED));
+}
+
+export function main() : void {
+  wd.interruptOn(BUTTON, wd.FALLING, buttonPressed);
+  while(true);
+}
+        </code></pre>
+        </div>
+    </section>
+
+    <section class="slide"> <!-- 9 -->
+        <h2 class="title">Capturing a Debug Session</h2>
+        <div class="container">
+            <img class="scaled" src="pictures/capture.svg" alt="Capturing a remote debugging session.">
+        </div>
+        <!-- since non-transferable resources are handled by the remote device, capturing and transfering the debug session comes down to capturing the state of the vm. -->
+    </section>
+
+    <section class="slide"> <!-- 7 -->
+        <h2 class="title">Pull-based Resources</h2>
+        <div class="container">
+            <img class="scaled" src="pictures/pullbased.svg" alt="Pull-based remote debugging.">
+        <!-- TODO: make figure horizontal -->
+        </div>
+    </section>
+
+    <section class="slide"> <!-- 8 -->
+        <h2 class="title">Push-based Resources</h2>
+        <div class="container">
+            <img class="scaled" src="pictures/pushbased.svg" alt="Push-based remote debugging.">
+        </div>
+    </section>
+
+    <section class="slide"> <!-- 10 -->
+        <h2 class="title">A Prototype: EDWARD</h2> <!-- Ad for the demo -->
+        <div class="container">
+            <img class="scaled" src="pictures/fullscreen.png" alt="The vscode WARDuino plugin">
+        </div>
+    </section>
+
+    <section class="slide" id="off"> <!-- 11 -->
+        <h2 class="title">A Prototype: EDWARD</h2> <!-- Ad for the demo -->
+        <div class="container">
+            <img class="scaled" style="filter: blur(5px) brightness(80%);" src="pictures/fullscreen.png" alt="The vscode WARDuino plugin">
+            <p class="centered" style="color: white; font-weight: bold; font-size: 42px; text-transform: uppercase; text-shadow: #333333 1px 0 10px; letter-spacing: 0.15em;">Demo tomorrow<p>
+        </div>
+    </section>
+
+    <section class="slide"> <!-- 12 -->
+        <h2 class="title">Benchmarks</h2>
+        <div class="container">
+        </div>
+    </section>
+
+    <section class="slide"> <!-- 13 -->
+        <h2 class="title">Conclusion</h2>
+        To implement a out-of-place debugger you need a vm that can:
+        <ul>
+            <li>capture the state of the vm</li>
+            <li>support pull-based debug messages</li>
+            <li>support push-based debug messages to forward events</li>
+        </ul>
+    </section>
+
+    <!-- TODO ... -->
+
+    <footer class="badge">
+        <a href="https://github.com/TOPLLab/WARDuino">Our code is on GitHub</a>
+    </footer>
+
+    <div class="progress"></div>
+
+    <script src="shower/shower.js"></script>
+</body>
+</html>
