@@ -127,3 +127,12 @@ mark.unselected {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.nontransferable {
+    background-color = yellow !important;
+    font-weight: bold;
+}
+
+.vertical {
+    flex-direction: column;
+}
