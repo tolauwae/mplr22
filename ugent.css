@@ -74,6 +74,10 @@ section.title h2.title {
     padding-bottom: 0;
 }
 
+.gap {
+    gap: 2em;
+}
+
 .logo {
     height: auto;
     width: 21%;
@@ -100,6 +104,14 @@ img.scaled {
     max-width: 100%;
 }
 
+#hardwarediagram {
+    width: 25%;
+}
+
+#bouncegraph {
+    margin: 0 6em;
+}
+
 img.scaled.screenshot {
     max-height: 350px;
 }
@@ -114,8 +126,6 @@ code {
 code.unselected, code.unselected span {
     color: #bdbdbd !important;
 }
-
-
 
 mark.unselected {
     color: #bdbdbd;

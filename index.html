@@ -20,8 +20,6 @@
 
         1. Requirements slide: "For the vm implementers in the room, if you want to add this to your vm you need to support the following ..."
         2. VSCode slide = advertisement for demo. But also go over some of the features. Add hour of demo.
-        3. Add debounce graph
-        4. Fix citations + add uni logo
         5. Distinquishing slide: use a long piece of code (needn't be readable) and colour two sections
         6. Conclusion more like the paper. 2 apporaches: foxus on the 1 or 2 key messages. Or map problems to solutions.
         7. Have 2 prototype slides: one for backend (what must the vm support + highlight what it does), one for frontend (vscode)
@@ -33,6 +31,7 @@
        13. Add QR codes to repo
        14. Slide 2 add current approaches: emulation and print statements (icons)
        15. Add screenshot to remote debugging diagram
+       16. Fix layout. Make consistant. 
     -->
 
     <header class="caption">
@@ -72,7 +71,21 @@
             *sketch the situations*
         -->
         <div class="grow container">
-            <img src="pictures/how-to-debug.svg" style="width: 80%;" alt="How to debug a microcontroller?">
+            <img src="pictures/how-to-debug1.svg" style="width: 80%;" alt="How to debug a microcontroller?">
+        </div>
+    </section>
+
+    <section class="ordered slide"> <!-- 2 -->
+        <h2 class="title">Challenges of Debugging Microcontrollers</h2>
+        <div class="grow container">
+            <img src="pictures/how-to-debug2.svg" style="width: 80%;" alt="How to debug a microcontroller?">
+        </div>
+    </section>
+
+    <section class="ordered slide"> <!-- 2 -->
+        <h2 class="title">Challenges of Debugging Microcontrollers</h2>
+        <div class="grow container">
+            <img src="pictures/how-to-debug3.svg" style="width: 80%;" alt="How to debug a microcontroller?">
         </div>
     </section>
 
@@ -91,60 +104,71 @@
 
     <section class="ordered slide">
         <h2 class="title">A Device Issue</h2>
-        <div class="grow container">
-            TODO: add hardware setup
+        <div class="grow container gap">
+            <img id="hardwarediagram" class="scaled" src="pictures/hardware-setup.svg">
+            <pre style="font-size: small; visibility: hidden;">
+import * as wd from warduino;<br>
+const LED: u32 = 25; const BUTTON: u32 = 26;<br>
+<br>
+function buttonPressed(): void {<br>
+  wd.digitalWrite(LED, !wd.digitalRead(LED));<br>
+}<br>
+<br>
+export function main() : void {<br>
+  wd.interruptOn(BUTTON, wd.FALLING, buttonPressed);<br>
+  while(true);<br>
+}<br>
+            </pre>
+        </div>
+    </section>
+
+    <section class="ordered slide">
+        <h2 class="title">A Device Issue</h2>
+        <div class="grow container gap">
+            <img id="hardwarediagram" class="scaled" src="pictures/hardware-setup.svg">
+            <pre style="font-size: small">
+import * as wd from warduino;<br>
+const LED: u32 = 25; const BUTTON: u32 = 26;<br>
+<br>
+function buttonPressed(): void {<br>
+  wd.digitalWrite(LED, !wd.digitalRead(LED));<br>
+}<br>
+<br>
+export function main() : void {<br>
+  wd.interruptOn(BUTTON, wd.FALLING, buttonPressed);<br>
+  while(true);<br>
+}<br>
+            </pre>
         </div>
     </section>
 
     <section class="ordered slide">
         <h2 class="title">An Inconspicuous Bug</h2>
-        <div class="container">
-            <pre>
-            <code class="typescript hljs language-typescript">
-<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> wd <span class="hljs-keyword">from</span> warduino;
-<span class="hljs-keyword">const</span> <span class="hljs-attr">LED</span>: u32 = <span class="hljs-number">25</span>; <span class="hljs-keyword">const</span> <span class="hljs-attr">BUTTON</span>: u32 = <span class="hljs-number">26</span>;
-
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">buttonPressed</span>(<span class="hljs-params"></span>): <span class="hljs-built_in">void</span> {
-  wd.<span class="hljs-title function_">digitalWrite</span>(<span class="hljs-variable constant_">LED</span>, !wd.<span class="hljs-title function_">digitalRead</span>(<span class="hljs-variable constant_">LED</span>));
-}
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>) : <span class="hljs-built_in">void</span> {
-  wd.<span class="hljs-title function_">interruptOn</span>(<span class="hljs-variable constant_">BUTTON</span>, wd.<span class="hljs-property">FALLING</span>, buttonPressed);
-  <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>);
-}
-            </code>
-            </pre>
+        <div class="grow container">
+            <img id="bouncegraph" class="scaled" src="pictures/bounce-graph.svg">
         </div>
-        <div class="grow container"></div>
     </section>
 
-    <section class="ordered slide"> <!-- 2 -->
+    <section class="ordered slide">
         <h2 class="title">A Device Issue</h2>
-        <!-- So our journey started when we noticed that there is a serious lack of debugging facliities when developing IoT applications on microcontrollers.
-            *sketch the situations*
-        -->
-        <div class="container">
-            <pre>
-            <code class="typescript hljs language-typescript">
-import * as wd from warduino;
-const LED: u32 = 25; const BUTTON: u32 = 26;
-
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">buttonPressed</span>(<span class="hljs-params"></span>): <span class="hljs-built_in">void</span> {
-  <span class="hljs-keyword">const</span> <span class="hljs-attr">current</span>: u32 = wd.<span class="hljs-title function_">digitalRead</span>(<span class="hljs-variable constant_">LED</span>);
-  wd.<span class="hljs-title function_">print</span>(<span class="hljs-string">`Entered callback: LED = <span class="hljs-subst">${current}</span>`</span>)
-  wd.<span class="hljs-title function_">digitalWrite</span>(<span class="hljs-variable constant_">LED</span>, !current);
-}
-
-export function main() : void {
-  wd.interruptOn(BUTTON, wd.FALLING, buttonPressed);
-  while(true);
-}
-            </code>
+        <div class="grow container gap">
+            <img id="hardwarediagram" class="scaled" src="pictures/hardware-setup.svg">
+            <pre style="font-size: small">
+import * as wd from warduino;<br>
+const LED: u32 = 25; const BUTTON: u32 = 26;<br>
+<br>
+function buttonPressed(): void {<br>
+const current: u32 = wd.digitalRead(LED);<br>
+wd.print(`Entered callback: LED = ${current}`)<br>
+wd.digitalWrite(LED, !current);<br>
+}<br>
+<br>
+export function main() : void {<br>
+  wd.interruptOn(BUTTON, wd.FALLING, buttonPressed);<br>
+  while(true);<br>
+}<br>
             </pre>
-        <code class="typescript hljs language-typescript">
-        </code>
         </div>
-        <div class="grow container"></div>
     </section>
 
 <!-- PART 2: Work on traditional remote debugging in the WARDuino VM by the UGent -->
