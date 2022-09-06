@@ -30,6 +30,9 @@
        10. Make deselected code grey
        11. Add numbers from debug paper (slide 3 from carlos programming demo)
        12. First oop slide: switch slides
+       13. Add QR codes to repo
+       14. Slide 2 add current approaches: emulation and print statements (icons)
+       15. Add screenshot to remote debugging diagram
     -->
 
     <header class="caption">
@@ -81,12 +84,19 @@
                 <p><b>95%</b> of surveyed participants rely at least in some degree on <b>manual testing</b> when developing IoT applications.
             </blockquote>
         </div>
-        <div class="container">
-            <p class="place bottom citation">[Makhshari A., Mesbah A. "IoT Bugs and Development Challenges ", ICSE '21]</p>
+        <div class="citation container">
+            <p class="citation">Makhshari A., Mesbah A. (2021). IoT Bugs and Development Challenges. ICSE '21</p>
         </div>
     </section>
 
-    <section class="slide">
+    <section class="ordered slide">
+        <h2 class="title">A Device Issue</h2>
+        <div class="grow container">
+            TODO: add hardware setup
+        </div>
+    </section>
+
+    <section class="ordered slide">
         <h2 class="title">An Inconspicuous Bug</h2>
         <div class="container">
             <pre>
@@ -105,10 +115,11 @@
             </code>
             </pre>
         </div>
+        <div class="grow container"></div>
     </section>
 
-    <section class="slide"> <!-- 2 -->
-        <h2 class="title">An Inconspicuous Bug</h2>
+    <section class="ordered slide"> <!-- 2 -->
+        <h2 class="title">A Device Issue</h2>
         <!-- So our journey started when we noticed that there is a serious lack of debugging facliities when developing IoT applications on microcontrollers.
             *sketch the situations*
         -->
@@ -130,40 +141,52 @@ export function main() : void {
 }
             </code>
             </pre>
-
         <code class="typescript hljs language-typescript">
         </code>
         </div>
+        <div class="grow container"></div>
     </section>
 
 <!-- PART 2: Work on traditional remote debugging in the WARDuino VM by the UGent -->
 
-    <section class="slide"> <!-- 3 -->
+    <section class="ordered slide"> <!-- 3 -->
         <h2 class="title">Traditional Remote Debugging</h2>
-        <div class="container">
-        <img class="scaled-1" src="pictures/flash.svg" alt="Remote debugging schematically.">
+        <div class="grow container">
+            <img class="scaled" src="pictures/warduino.png" alt="Remote debugging schematically.">
         </div>
-
-    <p class="place bottom citation">
-        Robbert Gurdeep Singh, and Christophe Scholliers. 2019. WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.
-    </p>
+        <div class="citation container">
+            <img class="tiny logo" src="pictures/ugent.png" alt="Ghent University">
+            <p class="citation">Gurdeep Singh, R., & Scholliers, C. (2019). WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.</p>
+        </div>
     </section>
 
-    <section class="slide"> <!-- 3 -->
+    <section class="ordered slide"> <!-- 3 -->
         <h2 class="title">Traditional Remote Debugging</h2>
-        <div class="container">
-        <img class="scaled-1" src="pictures/debugger-on-microcontroller.svg" alt="Remote debugging schematically.">
+        <div class="grow container">
+            <img class="scaled" src="pictures/flash.svg" alt="Remote debugging schematically.">
         </div>
-
-    <p class="place bottom citation">
-        Robbert Gurdeep Singh, and Christophe Scholliers. 2019. WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.
-    </p>
+        <div class="citation container">
+            <img class="tiny logo" src="pictures/ugent.png" alt="Ghent University">
+            <p class="citation">Gurdeep Singh, R., & Scholliers, C. (2019). WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.</p>
+        </div>
     </section>
 
-    <section class="slide"> <!-- 3 -->
+    <section class="ordered slide"> <!-- 3 -->
         <h2 class="title">Traditional Remote Debugging</h2>
-        <div class="container">
-        <img class="scaled-1" src="pictures/remote-debugging.svg" alt="Remote debugging schematically.">
+        <div class="grow container">
+        <img class="scaled" src="pictures/debugger-on-microcontroller.svg" alt="Remote debugging schematically.">
+        </div>
+
+        <div class="citation container">
+            <img class="tiny logo" src="pictures/ugent.png" alt="Ghent University">
+            <p class="citation">Gurdeep Singh, R., & Scholliers, C. (2019). WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.</p>
+        </div>
+    </section>
+
+    <section class="ordered slide"> <!-- 3 -->
+        <h2 class="title">Traditional Remote Debugging</h2>
+        <div class="grow container">
+        <img class="scaled" src="pictures/remote-debugging.svg" alt="Remote debugging schematically.">
         <!-- go over image, developer'sm achine vs debugger backend, A, B, C, VM, Debug monitor, Debug manager, Debug Views.
             conclude = This turns out to work quite well, and I refer anyone who wants to implement this themselves in their own vm to the original WARDuino paper, which goes into more detail and provide a formal semantics that lays out how to implement this.
 
@@ -171,63 +194,73 @@ export function main() : void {
         -->
         </div>
 
-    <p class="place bottom citation">
-        Robbert Gurdeep Singh, and Christophe Scholliers. 2019. WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.
-    </p>
+        <div class="citation container">
+            <img class="tiny logo" src="pictures/ugent.png" alt="Ghent University">
+            <p class="citation">Gurdeep Singh, R., & Scholliers, C. (2019). WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.</p>
+        </div>
     </section>
 
-    <!--
-    <section class="slide">
+    <section class="ordered slide">
         <h2 class="title">The Disadvantages of Remote Debugging</h2>
             TODO the same image but annotated to show:
             - latency
             - debugger runs on mcu along side vm (constraint resources)
+        <div class="grow conatiner"></div>
     </section>
-    -->
 
 <!-- PART 3: Work on out-of-place debugging by the VUB -->
 
-    <section class="slide"> <!-- 5 -->
+    <section class="ordered slide">
         <h2 class="title">Out-of-place Debugging</h2>
-        <img class="cover width place bottom" src="pictures/out-of-place.svg" alt="Move debugging process to the desktop environment.">
+        <div class="grow container">
+            <img class="scaled" src="pictures/out-of-place.svg" alt="Move debugging process to the desktop environment."> <!-- TODO add images as background imag -->
+        </div>
+        <div class="citation container">
+            <img class="tiny logo" src="pictures/vub.jpg" alt="Vrije Universiteit Brussel">
+            <p class="citation">Marra, M., Polito, G., & Gonzalez Boix, E. (2018). Out-of-place debugging: A debugging architecture to reduce debugging interference. The Art, Science, and Engineering of Programming</p>
+        </div>
         <!-- This is where out-of-place debugging comes in. You can see the attraction. We simply move the debugging process to the developer's machine. No more latency or constraint resources to keep in mind.
             But we cannot actually move the debugging process like that because it means also moving the vm and executing on the developer's machine.
         -->
-    <p class="place bottom citation">
-        Matteo Marra, Guillermo Polito, Elisa Gonzalez Boix. 2018. WARDuino: Out-of-place debugging: A debugging architecture to reduce debugging interference.
-    </p>
     </section>
 
-    <section class="slide"> <!-- 5 -->
+    <section class="ordered slide"> <!-- 5 -->
         <h2 class="title">Out-of-place Debugging</h2>
-        <div class="container">
-        <img class="scaled-1" src="pictures/moving-backend.svg" alt="Move debugging process to the desktop environment.">
+        <div class="grow container">
+        <img class="scaled" src="pictures/moving-backend.svg" alt="Move debugging process to the desktop environment.">
         </div>
-    <p class="place bottom citation">
-        Matteo Marra, Guillermo Polito, Elisa Gonzalez Boix. 2018. WARDuino: Out-of-place debugging: A debugging architecture to reduce debugging interference.
-    </p>
+        <div class="citation container">
+            <img class="tiny logo" src="pictures/vub.jpg" alt="Vrije Universiteit Brussel">
+            <p class="citation">Marra, M., Polito, G., & Gonzalez Boix, E. (2018). Out-of-place debugging: A debugging architecture to reduce debugging interference. The Art, Science, and Engineering of Programming</p>
+        </div>
     </section>
 
 <!-- PART 4: Bringing out-of-place debugging to microcontrollers -->
 
-    <section class="slide"> <!-- 9 -->
+    <section class="ordered slide">
+        <h2 class="title">Bringing Out-of-place Debugging to Microcontrollers</h2>
+    </section>
+
+    <section class="ordered slide"> <!-- 9 -->
         <h2 class="title">Capturing a Debug Session</h2>
-        <div class="container">
-            <img class="scaled-1" src="pictures/capture.svg" alt="Capturing a remote debugging session.">
+        <div class="grow container">
+            <img class="scaled" src="pictures/capture.svg" alt="Capturing a remote debugging session.">
         </div>
         <!-- since non-transferable resources are handled by the remote device, capturing and transfering the debug session comes down to capturing the state of the vm. -->
     </section>
 
-    <section class="slide"> <!-- 6 -->
+    <section class="ordered slide"> <!-- 6 -->
         <h2 class="title">Non-transferable Resources</h2>
-        <img class="cover width place bottom" src="pictures/non-transferable-resources.svg" alt="Non-transferable resources cannot be moved to the desktop environment.">
+        <div class="grow container">
+            <img class="scaled" src="pictures/non-transferable-resources.svg" alt="Non-transferable resources cannot be moved to the desktop environment.">
+        </div>
         <!--
             The non-transferable resources are the major challenge.
             What are they? And wy are they a challenge?
         -->
     </section>
 
-    <section class="slide">
+    <section class="ordered slide">
         <h2 class="title">Distinquishing Non-transferable Resources</h2>
         <div class="container">
             <pre>
@@ -246,17 +279,18 @@ export function main() : void {
             </code>
             </pre>
         </div>
+        <div class="grow container"></div>
     </section>
 
-    <section class="slide"> <!-- 7 -->
+    <section class="ordered slide"> <!-- 7 -->
         <h2 class="title">Pull-based Resources</h2>
-        <div class="container">
+        <div class="grow container">
             <img class="scaled" src="pictures/pullbased.svg" alt="Pull-based remote debugging.">
         <!-- TODO: make figure horizontal -->
         </div>
     </section>
 
-    <section class="slide">
+    <section class="ordered slide">
         <h2 class="title">Distinquishing Non-transferable Resources</h2>
         <div class="container">
             <pre>
@@ -275,16 +309,17 @@ export function main() : void {
             </code>
             </pre>
         </div>
+        <div class="grow container"></div>
     </section>
 
-    <section class="slide"> <!-- 8 -->
+    <section class="ordered slide"> <!-- 8 -->
         <h2 class="title">Push-based Resources</h2>
-        <div class="container">
+        <div class="grow container">
             <img class="scaled" src="pictures/pushbased.svg" alt="Push-based remote debugging.">
         </div>
     </section>
 
-    <section class="slide"> <!-- 13 -->
+    <section class="ordered slide"> <!-- 13 -->
         <h2 class="title">Requirements</h2>
         To implement a out-of-place debugger you need a vm that can:
         <ul>
@@ -292,31 +327,40 @@ export function main() : void {
             <li>support pull-based debug messages</li>
             <li>support push-based debug messages to forward events</li>
         </ul>
+        <div class="grow container"></div>
     </section>
 
-    <section class="slide"> <!-- 10 -->
+    <section class="ordered slide"> <!-- 10 -->
         <h2 class="title">A Prototype: EDWARD</h2> <!-- Ad for the demo -->
-        <div class="container">
-            <img class="scaled-1" src="pictures/fullscreen.png" alt="The vscode WARDuino plugin">
+        <div class="grow container">
+            TODO: The backend
         </div>
     </section>
 
-    <section class="slide" id="off"> <!-- 11 -->
+    <section class="ordered slide"> <!-- 10 -->
         <h2 class="title">A Prototype: EDWARD</h2> <!-- Ad for the demo -->
-        <div class="container">
-            <img class="scaled-1" style="filter: blur(5px) brightness(80%);" src="pictures/fullscreen.png" alt="The vscode WARDuino plugin">
+        <div class="grow container">
+            <img class="scaled screenshot" src="pictures/fullscreen.png" alt="The vscode WARDuino plugin">
+        </div>
+    </section>
+
+    <section class="ordered slide" id="off"> <!-- 11 -->
+        <h2 class="title">A Prototype: EDWARD</h2> <!-- Ad for the demo -->
+        <div class="grow container">
+            <img class="scaled screenshot" style="filter: blur(5px) brightness(80%);" src="pictures/fullscreen.png" alt="The vscode WARDuino plugin">
             <p class="centered" style="color: white; font-weight: bold; font-size: 42px; text-transform: uppercase; text-shadow: #333333 1px 0 10px; letter-spacing: 0.15em;">Demo tomorrow<p>
         </div>
     </section>
 
-    <section class="slide"> <!-- 12 -->
+    <section class="ordered slide"> <!-- 12 -->
         <h2 class="title">Benchmarks</h2>
         <div class="container vertical">
             <img src="pictures/warduino-overhead-oop.svg">
         </div>
+        <div class="grow container"></div>
     </section>
 
-    <section class="slide"> <!-- 13 -->
+    <section class="ordered slide"> <!-- 13 -->
         <h2 class="title">Conclusion</h2>
 
     </section>
@@ -327,7 +371,7 @@ export function main() : void {
         <a href="https://github.com/TOPLLab/WARDuino">Our code is on GitHub</a>
     </footer>
 
-    <div class="progress"></div>
+    <!--<div class="progress"></div>-->
 
     <script src="shower/shower.js"></script>
 </body>
