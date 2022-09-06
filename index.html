@@ -106,6 +106,26 @@
         <h2 class="title">A Device Issue</h2>
         <div class="grow container gap">
             <img id="hardwarediagram" class="scaled" src="pictures/hardware-setup.svg">
+            <pre style="font-size: small; visibility: hidden;">
+import * as wd from warduino;<br>
+const LED: u32 = 25; const BUTTON: u32 = 26;<br>
+<br>
+function buttonPressed(): void {<br>
+  wd.digitalWrite(LED, !wd.digitalRead(LED));<br>
+}<br>
+<br>
+export function main() : void {<br>
+  wd.interruptOn(BUTTON, wd.FALLING, buttonPressed);<br>
+  while(true);<br>
+}<br>
+            </pre>
+        </div>
+    </section>
+
+    <section class="ordered slide">
+        <h2 class="title">A Device Issue</h2>
+        <div class="grow container gap">
+            <img id="hardwarediagram" class="scaled" src="pictures/hardware-setup.svg">
             <pre style="font-size: small">
 import * as wd from warduino;<br>
 const LED: u32 = 25; const BUTTON: u32 = 26;<br>
