@@ -31,6 +31,8 @@
        11. Add numbers from debug paper (slide 3 from carlos programming demo)
        12. First oop slide: switch slides
        13. Add QR codes to repo
+       14. Slide 2 add current approaches: emulation and print statements (icons)
+       15. Add screenshot to remote debugging diagram
     -->
 
     <header class="caption">
@@ -83,7 +85,14 @@
             </blockquote>
         </div>
         <div class="citation container">
-            <p class="citation">[Makhshari A., Mesbah A. (2021). "IoT Bugs and Development Challenges ", ICSE '21]</p>
+            <p class="citation">Makhshari A., Mesbah A. (2021). IoT Bugs and Development Challenges. ICSE '21</p>
+        </div>
+    </section>
+
+    <section class="ordered slide">
+        <h2 class="title">A Device Issue</h2>
+        <div class="grow container">
+            TODO: add hardware setup
         </div>
     </section>
 
@@ -110,7 +119,7 @@
     </section>
 
     <section class="ordered slide"> <!-- 2 -->
-        <h2 class="title">An Inconspicuous Bug</h2>
+        <h2 class="title">A Device Issue</h2>
         <!-- So our journey started when we noticed that there is a serious lack of debugging facliities when developing IoT applications on microcontrollers.
             *sketch the situations*
         -->
@@ -143,10 +152,22 @@ export function main() : void {
     <section class="ordered slide"> <!-- 3 -->
         <h2 class="title">Traditional Remote Debugging</h2>
         <div class="grow container">
+            <img class="scaled" src="pictures/warduino.png" alt="Remote debugging schematically.">
+        </div>
+        <div class="citation container">
+            <img class="tiny logo" src="pictures/ugent.png" alt="Ghent University">
+            <p class="citation">Gurdeep Singh, R., & Scholliers, C. (2019). WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.</p>
+        </div>
+    </section>
+
+    <section class="ordered slide"> <!-- 3 -->
+        <h2 class="title">Traditional Remote Debugging</h2>
+        <div class="grow container">
             <img class="scaled" src="pictures/flash.svg" alt="Remote debugging schematically.">
         </div>
         <div class="citation container">
-            <p class="citation">Robbert Gurdeep Singh, and Christophe Scholliers. 2019. WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.</p>
+            <img class="tiny logo" src="pictures/ugent.png" alt="Ghent University">
+            <p class="citation">Gurdeep Singh, R., & Scholliers, C. (2019). WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.</p>
         </div>
     </section>
 
@@ -157,7 +178,8 @@ export function main() : void {
         </div>
 
         <div class="citation container">
-            <p class="citation">Robbert Gurdeep Singh, and Christophe Scholliers. 2019. WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.</p>
+            <img class="tiny logo" src="pictures/ugent.png" alt="Ghent University">
+            <p class="citation">Gurdeep Singh, R., & Scholliers, C. (2019). WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.</p>
         </div>
     </section>
 
@@ -173,18 +195,18 @@ export function main() : void {
         </div>
 
         <div class="citation container">
-            <p class="citation">Robbert Gurdeep Singh, and Christophe Scholliers. 2019. WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.</p>
+            <img class="tiny logo" src="pictures/ugent.png" alt="Ghent University">
+            <p class="citation">Gurdeep Singh, R., & Scholliers, C. (2019). WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.</p>
         </div>
     </section>
 
-    <!--
     <section class="ordered slide">
         <h2 class="title">The Disadvantages of Remote Debugging</h2>
             TODO the same image but annotated to show:
             - latency
             - debugger runs on mcu along side vm (constraint resources)
+        <div class="grow conatiner"></div>
     </section>
-    -->
 
 <!-- PART 3: Work on out-of-place debugging by the VUB -->
 
@@ -194,7 +216,8 @@ export function main() : void {
             <img class="scaled" src="pictures/out-of-place.svg" alt="Move debugging process to the desktop environment."> <!-- TODO add images as background imag -->
         </div>
         <div class="citation container">
-            <p class="citation">[Marra, M., Polito, G., & Gonzalez Boix, E. (2018). "Out-of-place debugging: A debugging architecture to reduce debugging interference". The Art, Science, and Engineering of Programming]</p>
+            <img class="tiny logo" src="pictures/vub.jpg" alt="Vrije Universiteit Brussel">
+            <p class="citation">Marra, M., Polito, G., & Gonzalez Boix, E. (2018). Out-of-place debugging: A debugging architecture to reduce debugging interference. The Art, Science, and Engineering of Programming</p>
         </div>
         <!-- This is where out-of-place debugging comes in. You can see the attraction. We simply move the debugging process to the developer's machine. No more latency or constraint resources to keep in mind.
             But we cannot actually move the debugging process like that because it means also moving the vm and executing on the developer's machine.
@@ -207,11 +230,16 @@ export function main() : void {
         <img class="scaled" src="pictures/moving-backend.svg" alt="Move debugging process to the desktop environment.">
         </div>
         <div class="citation container">
-            <p class="citation">[Marra, M., Polito, G., & Gonzalez Boix, E. (2018). "Out-of-place debugging: A debugging architecture to reduce debugging interference". The Art, Science, and Engineering of Programming]</p>
+            <img class="tiny logo" src="pictures/vub.jpg" alt="Vrije Universiteit Brussel">
+            <p class="citation">Marra, M., Polito, G., & Gonzalez Boix, E. (2018). Out-of-place debugging: A debugging architecture to reduce debugging interference. The Art, Science, and Engineering of Programming</p>
         </div>
     </section>
 
 <!-- PART 4: Bringing out-of-place debugging to microcontrollers -->
+
+    <section class="ordered slide">
+        <h2 class="title">Bringing Out-of-place Debugging to Microcontrollers</h2>
+    </section>
 
     <section class="ordered slide"> <!-- 9 -->
         <h2 class="title">Capturing a Debug Session</h2>
@@ -305,6 +333,13 @@ export function main() : void {
     <section class="ordered slide"> <!-- 10 -->
         <h2 class="title">A Prototype: EDWARD</h2> <!-- Ad for the demo -->
         <div class="grow container">
+            TODO: The backend
+        </div>
+    </section>
+
+    <section class="ordered slide"> <!-- 10 -->
+        <h2 class="title">A Prototype: EDWARD</h2> <!-- Ad for the demo -->
+        <div class="grow container">
             <img class="scaled screenshot" src="pictures/fullscreen.png" alt="The vscode WARDuino plugin">
         </div>
     </section>
@@ -336,7 +371,7 @@ export function main() : void {
         <a href="https://github.com/TOPLLab/WARDuino">Our code is on GitHub</a>
     </footer>
 
-    <div class="progress"></div>
+    <!--<div class="progress"></div>-->
 
     <script src="node_modules/@shower/core/dist/shower.js"></script>
 </body>

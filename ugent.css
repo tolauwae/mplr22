@@ -80,6 +80,12 @@ section.title h2.title {
     margin: 0 .5em;
 }
 
+.tiny.logo {
+    max-height: 45px;
+    width: auto;
+    margin-bottom: 'px;
+}
+
 #vub {
     width: 14%;
 }
@@ -91,6 +97,7 @@ div.container.image {
 img.scaled {
     height: auto;
     width: auto;
+    max-width: 100%;
 }
 
 img.scaled.screenshot {
@@ -114,7 +121,8 @@ mark.unselected {
     color: #bdbdbd;
 }
 
-div.citation {
+div.container.citation {
+    flex-direction: row;
     align-items: flex-end;
     align-content: flex-end;
     padding-bottom: 0;
