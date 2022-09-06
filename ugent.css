@@ -29,11 +29,15 @@
 h2.title {
     color: var(--color-key) /*#bdbdbd*/;
     text-align: center;
-    font-weight: bold;
-    font-size: 42px;
+    /*font-weight: bold;*/
+    font-size: 36px;
     text-transform: uppercase;
     letter-spacing: 0.15em;
     line-height: 1.15em;
+}
+
+section.title h2.title {
+    font-size: 42px;
 }
 
 body {
@@ -52,7 +56,6 @@ body {
 
 #affiliation {
     align-content: center;
-    padding-bottom: 5%;
 }
 
 .authors {
@@ -75,6 +78,7 @@ body {
     justify-content: center;
     align-items: center;
     align-content: center;
+    padding-bottom: 5%;
 }
 
 .logo {
@@ -151,4 +155,9 @@ mark.unselected {
 
 .vertical {
     flex-direction: column;
+}
+
+blockquote {
+    line-height: 1.4em;
+    padding: 3em;
 }
