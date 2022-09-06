@@ -34,21 +34,23 @@
     </header>
 
     <section class="title slide"> <!-- 1 -->
+        <div class="ordered">
         <h2 class="title">Event-based Out-of-place Debugging</h2>
         <p class="authors"><b>Tom&nbspLauwaerts</b>, Carlos&nbspRojas&nbspCastlilo, Robbert&nbspGurdeep&nbspSingh, Matteo&nbspMarra, Christophe&nbspScholliers, Elisa&nbspGonzalez&nbspBoix</p>
-        <div class="container">
+        <div id="affiliation" class="grow container">
                 <!-- <a class="invisible" href="https://www.vub.be/"> -->
-                    <img class="logo" src="pictures/vub.jpg" alt="Vrije Universiteit Brussel">
+                    <img id="vub" class="logo" src="pictures/vub.jpg" alt="Vrije Universiteit Brussel">
                 <!-- </a> -->
                 <!-- <a class="invisible link" href="https://www.ugent.be/"> -->
-                    <img class="logo" src="pictures/ugent.png"  alt="Ghent University">
+                    <img id="ugent" class="logo" src="pictures/ugent.png"  alt="Ghent University">
                 <!-- </a> -->
                 <!-- <a class="invisible" href="https://www.fwo.be/"> -->
                     <img id="fwo" class="logo" src="pictures/fwo.jpg" alt="Research Foundation Flanders">
                 <!-- </a> -->
         </div>
+        </div>
         <!--
-            We wlil present a novel debugging technique we developed at the Free University of Brussels and Ghent University, which we have called event based out-of-place debugging. I wlil start with
+            We will present a novel debugging technique we developed at the Free University of Brussels and Ghent University, which we have called event based out-of-place debugging. I wlil start with
             - what set us on this course to a new debugging technique
             - before continuing with how we arrived at event-based out-of-place debugging
             - and how it works.
@@ -235,11 +237,42 @@ export function main() : void {
         </div>
     </section>
 
+    <section class="slide">
+        <h2 class="title">Distinquishing Non-transferable Resources</h2>
+        <div class="container">
+            <pre>
+            <code class="typescript hljs language-typescript">
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> wd <span class="hljs-keyword">from</span> warduino;
+<span class="hljs-keyword">const</span> <span class="hljs-attr">LED</span>: u32 = <span class="hljs-number">25</span>; <span class="hljs-keyword">const</span> <span class="hljs-attr">BUTTON</span>: u32 = <span class="hljs-number">26</span>;
+
+<span class="nontransferable"><span class="hljs-keyword">function</span> <span class="hljs-title function_">buttonPressed</span>(<span class="hljs-params"></span>): <span class="hljs-built_in">void</span> {</span>
+  wd.<span class="hljs-title function_">digitalWrite</span>(<span class="hljs-variable constant_">LED</span>, !wd.<span class="hljs-title function_">digitalRead</span>(<span class="hljs-variable constant_">LED</span>));
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>) : <span class="hljs-built_in">void</span> {
+  <span class="nontransferable">wd.<span class="hljs-title function_">interruptOn</span></span>(<span class="hljs-variable constant_">BUTTON</span>, wd.<span class="hljs-property">FALLING</span>, buttonPressed);
+  <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>);
+}
+            </code>
+            </pre>
+        </div>
+    </section>
+
     <section class="slide"> <!-- 8 -->
         <h2 class="title">Push-based Resources</h2>
         <div class="container">
             <img class="scaled" src="pictures/pushbased.svg" alt="Push-based remote debugging.">
         </div>
+    </section>
+
+    <section class="slide"> <!-- 13 -->
+        <h2 class="title">Requirements</h2>
+        To implement a out-of-place debugger you need a vm that can:
+        <ul>
+            <li>capture the state of the vm</li>
+            <li>support pull-based debug messages</li>
+            <li>support push-based debug messages to forward events</li>
+        </ul>
     </section>
 
     <section class="slide"> <!-- 10 -->
@@ -266,12 +299,7 @@ export function main() : void {
 
     <section class="slide"> <!-- 13 -->
         <h2 class="title">Conclusion</h2>
-        To implement a out-of-place debugger you need a vm that can:
-        <ul>
-            <li>capture the state of the vm</li>
-            <li>support pull-based debug messages</li>
-            <li>support push-based debug messages to forward events</li>
-        </ul>
+
     </section>
 
     <!-- TODO ... -->
