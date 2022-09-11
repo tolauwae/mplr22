@@ -261,6 +261,17 @@ export function main() : void {<br>
     <section class="ordered slide">
         <h2 class="title">Out-of-place Debugging</h2>
         <div class="grow container">
+            <img class="scaled pdf" src="pictures/paper.png" alt="Out-of-place debugging paper."> <!-- TODO add paper screenshot-->
+        </div>
+        <div class="citation container">
+            <img class="tiny logo" src="pictures/vub.jpg" alt="Vrije Universiteit Brussel">
+            <p class="citation">Marra, M., Polito, G., & Gonzalez Boix, E. (2018). Out-of-place debugging: A debugging architecture to reduce debugging interference. The Art, Science, and Engineering of Programming</p>
+        </div>
+    </section>
+
+    <section class="ordered slide">
+        <h2 class="title">Out-of-place Debugging</h2>
+        <div class="grow container">
             <img class="scaled" src="pictures/out-of-place.svg" alt="Move debugging process to the desktop environment."> <!-- TODO add images as background imag -->
         </div>
         <div class="citation container">
@@ -283,10 +294,57 @@ export function main() : void {<br>
         </div>
     </section>
 
+    <section class="ordered slide">
+        <h2 class="title">Remote + Local Debugging</h2>
+        <div class="grow container">
+            <img class="scaled" src="pictures/remotelocal.svg" alt="Move debugging process to the desktop environment."> <!-- TODO add images as background imag -->
+        </div>
+        <div class="citation container">
+            <img class="tiny logo" src="pictures/vub.jpg" alt="Vrije Universiteit Brussel">
+            <p class="citation">Marra, M., Polito, G., & Gonzalez Boix, E. (2018). Out-of-place debugging: A debugging architecture to reduce debugging interference. The Art, Science, and Engineering of Programming</p>
+        </div>
+        <!-- This is where out-of-place debugging comes in. You can see the attraction. We simply move the debugging process to the developer's machine. No more latency or constraint resources to keep in mind.
+            But we cannot actually move the debugging process like that because it means also moving the vm and executing on the developer's machine.
+        -->
+    </section>
+
+    <section class="ordered slide"> <!-- 6 -->
+        <h2 class="title">Non-transferable Resources</h2>
+        <div class="grow container">
+            <img class="scaled" src="pictures/ntr.svg" alt="Non-transferable resources cannot be moved to the desktop environment.">
+        </div>
+        <div class="citation container">
+            <img class="tiny logo" src="pictures/vub.jpg" alt="Vrije Universiteit Brussel">
+            <p class="citation">Marra, M., Polito, G., & Gonzalez Boix, E. (2018). Out-of-place debugging: A debugging architecture to reduce debugging interference. The Art, Science, and Engineering of Programming</p>
+        </div>
+        <!--
+            The non-transferable resources are the major challenge.
+            What are they? And wy are they a challenge?
+        -->
+    </section>
+
+    <section class="ordered slide">
+        <h2 class="title">Out-of-place Debugging</h2>
+        <div class="grow container">
+            <img class="scaled" src="pictures/pharo.svg" alt="Pharo out-of-place debugger."> <!-- TODO add pharo screenshot-->
+        </div>
+        <div class="citation container">
+            <img class="tiny logo" src="pictures/vub.jpg" alt="Vrije Universiteit Brussel">
+            <p class="citation">Marra, M., Polito, G., & Gonzalez Boix, E. (2018). Out-of-place debugging: A debugging architecture to reduce debugging interference. The Art, Science, and Engineering of Programming</p>
+        </div>
+    </section>
+
 <!-- PART 4: Bringing out-of-place debugging to microcontrollers -->
 
     <section class="ordered slide">
         <h2 class="title">Bringing Out-of-place Debugging to Microcontrollers</h2>
+    </section>
+
+    <section class="ordered slide">
+        <h2 class="title">Distinquishing Non-transferable Resources</h2>
+        <div class="grow container">
+            <img class="scaled screenshot" src="pictures/distinguish.png" alt="Distinquishing nontransferable resources.">
+        </div>
     </section>
 
     <section class="ordered slide"> <!-- 9 -->
@@ -297,67 +355,12 @@ export function main() : void {<br>
         <!-- since non-transferable resources are handled by the remote device, capturing and transfering the debug session comes down to capturing the state of the vm. -->
     </section>
 
-    <section class="ordered slide"> <!-- 6 -->
-        <h2 class="title">Non-transferable Resources</h2>
-        <div class="grow container">
-            <img class="scaled" src="pictures/non-transferable-resources.svg" alt="Non-transferable resources cannot be moved to the desktop environment.">
-        </div>
-        <!--
-            The non-transferable resources are the major challenge.
-            What are they? And wy are they a challenge?
-        -->
-    </section>
-
-    <section class="ordered slide">
-        <h2 class="title">Distinquishing Non-transferable Resources</h2>
-        <div class="container">
-            <pre>
-            <code class="typescript hljs language-typescript">
-<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> wd <span class="hljs-keyword">from</span> warduino;
-<span class="hljs-keyword">const</span> <span class="hljs-attr">LED</span>: u32 = <span class="hljs-number">25</span>; <span class="hljs-keyword">const</span> <span class="hljs-attr">BUTTON</span>: u32 = <span class="hljs-number">26</span>;
-
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">buttonPressed</span>(<span class="hljs-params"></span>): <span class="hljs-built_in">void</span> {
-  <span class="nontransferable">wd.<span class="hljs-title function_">digitalWrite</span></span>(<span class="hljs-variable constant_">LED</span>, <span class="nontransferable">!wd.<span class="hljs-title function_">digitalRead</span></span>(<span class="hljs-variable constant_">LED</span>));
-}
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>) : <span class="hljs-built_in">void</span> {
-  <span class="nontransferable">wd.<span class="hljs-title function_">interruptOn</span></span>(<span class="hljs-variable constant_">BUTTON</span>, wd.<span class="hljs-property">FALLING</span>, buttonPressed);
-  <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>);
-}
-            </code>
-            </pre>
-        </div>
-        <div class="grow container"></div>
-    </section>
-
     <section class="ordered slide"> <!-- 7 -->
         <h2 class="title">Pull-based Resources</h2>
         <div class="grow container">
             <img class="scaled" src="pictures/pullbased.svg" alt="Pull-based remote debugging.">
         <!-- TODO: make figure horizontal -->
         </div>
-    </section>
-
-    <section class="ordered slide">
-        <h2 class="title">Distinquishing Non-transferable Resources</h2>
-        <div class="container">
-            <pre>
-            <code class="typescript hljs language-typescript">
-<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> wd <span class="hljs-keyword">from</span> warduino;
-<span class="hljs-keyword">const</span> <span class="hljs-attr">LED</span>: u32 = <span class="hljs-number">25</span>; <span class="hljs-keyword">const</span> <span class="hljs-attr">BUTTON</span>: u32 = <span class="hljs-number">26</span>;
-
-<span class="nontransferable"><span class="hljs-keyword">function</span> <span class="hljs-title function_">buttonPressed</span>(<span class="hljs-params"></span>): <span class="hljs-built_in">void</span> {</span>
-  wd.<span class="hljs-title function_">digitalWrite</span>(<span class="hljs-variable constant_">LED</span>, !wd.<span class="hljs-title function_">digitalRead</span>(<span class="hljs-variable constant_">LED</span>));
-}
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>) : <span class="hljs-built_in">void</span> {
-  <span class="nontransferable">wd.<span class="hljs-title function_">interruptOn</span></span>(<span class="hljs-variable constant_">BUTTON</span>, wd.<span class="hljs-property">FALLING</span>, buttonPressed);
-  <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>);
-}
-            </code>
-            </pre>
-        </div>
-        <div class="grow container"></div>
     </section>
 
     <section class="ordered slide"> <!-- 8 -->
