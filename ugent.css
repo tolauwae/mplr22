@@ -122,6 +122,11 @@ img.scaled.screenshot {
     max-height: 350px;
 }
 
+img.halved.screenshot {
+    margin: 0 1em;
+    max-width: 50%;
+}
+
 code {
     font-size: small;
     line-height: 1.4em !important;
