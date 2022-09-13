@@ -252,14 +252,30 @@ export function main() : void {<br>
         </div>
     </section>
 
+    <!--
+    <section class="ordered slide">
+        <h2 class="title">The Advantages</h2>
+        <div class="grow container">
+
+        </div>
+        <div class="citation container">
+            <img class="tiny logo" src="pictures/ugent.png" alt="Ghent University">
+            <p class="citation">Gurdeep Singh, R., & Scholliers, C. (2019). WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.</p>
+        </div>
+    </section>-->
+
     <section class="ordered slide">
         <h2 class="title">The Disadvantages</h2>
         <!--    TODO the same image but annotated to show:
             - latency
             - debugger runs on mcu along side vm (constraint resources) -->
-        <div class="vertical container" style="justify-content: flex-start; align-content: stretch;">
-            <div>Latency</div>
-            <div>Debugger</div>
+        <div class="grow vertical container">
+            <div class="grow leftalign container">
+            <img class="medium logo" src="pictures/constraint-debugger.svg" alt="WARDuino repo."> <span class="">Debugger runs on constraint devices.</span>
+            </div>
+            <div class="grow leftalign container">
+            <img class="medium logo" src="pictures/latency.svg" alt="WARDuino VSCode repo."> <span class="">Each debug operation requires communication with a remote device.</span>
+            </div>
         </div>
 
         <div class="grow container"></div>
@@ -357,6 +373,13 @@ export function main() : void {<br>
     <section class="ordered slide">
         <h2 class="title">Distinquishing Non-transferable Resources</h2>
         <div class="grow container">
+            <img class="scaled screenshot" src="pictures/distinguish-0.png" alt="Distinquishing nontransferable resources.">
+        </div>
+    </section>
+
+    <section class="ordered slide">
+        <h2 class="title">Distinquishing Non-transferable Resources</h2>
+        <div class="grow container">
             <img class="scaled screenshot" src="pictures/distinguish-1.png" alt="Distinquishing nontransferable resources.">
         </div>
     </section>
@@ -443,23 +466,15 @@ export function main() : void {<br>
 
     <section class="ordered slide"> <!-- 13 -->
         <!-- TODO split slide into 3 -->
-        <!-- TODO add graphs to figure -->
         <h2 class="title">Conclusion</h2>
         <div class="grow container">
             <img class="scaled" src="pictures/conclusion.svg" alt="Overview of the paper.">
         </div>
-    </section>
-
-    <section class="ordered slide"> <!-- 13 -->
-        <h2 class="title">Thank you</h2>
-        <div class="grow container">
-            <img class="logo" src="pictures/qr-github.svg" alt="WARDuino repo.">
-            <img class="logo" src="pictures/qr-vscode.svg" alt="WARDuino VSCode repo.">
-            <img class="logo" src="pictures/qr-github.svg" alt="WARDuino repo.">
+        <div class="footer container">
+            <img class="small logo" src="pictures/qr-github.svg" alt="WARDuino repo."> <span class="footnote">WARDuino VM</span>
+            <img class="small logo" src="pictures/qr-vscode.svg" alt="WARDuino VSCode repo."> <span class="footnote">VSCode Plugin</span>
         </div>
     </section>
-
-    <!--<div class="progress"></div>-->
 
     <script src="shower/shower.js"></script>
 </body>

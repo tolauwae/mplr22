@@ -1,5 +1,9 @@
 @import url(node_modules/@shower/material/styles/styles.css);
 
+body {
+    color: #404041;
+}
+
 .shower {
     --slide-ratio: calc(16 / 9);
     --color-key: #1E64C8;
@@ -74,6 +78,11 @@ section.title h2.title {
     padding-bottom: 0;
 }
 
+.leftalign {
+    justify-content: flex-start;
+    align-content: stretch;
+}
+
 .gap {
     gap: 2em;
 }
@@ -87,7 +96,19 @@ section.title h2.title {
 .tiny.logo {
     max-height: 45px;
     width: auto;
-    margin-bottom: 'px;
+    margin-bottom: 4px;
+}
+
+.small {
+    max-height: 64px;
+    width: auto;
+}
+
+.medium {
+    max-height: 180px;
+    max-width: 180px;
+    width: auto;
+    margin-right: 2.5em;
 }
 
 #vub {
@@ -154,6 +175,17 @@ p.citation {
     color: #9fa0a1;
     font-size: 50%;
     line-height: 130%;
+}
+
+.footer.container {
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: .2em;
+}
+
+.footnote {
+    font-size: 50%;
+    font-weight: bold;
 }
 
 /* slide number bottom right*/
