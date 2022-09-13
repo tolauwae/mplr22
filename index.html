@@ -257,10 +257,12 @@ export function main() : void {<br>
         <!--    TODO the same image but annotated to show:
             - latency
             - debugger runs on mcu along side vm (constraint resources) -->
-        <div class="grow container">
-        <img class="scaled" src="pictures/disadvantages.svg" alt="Disadvantages of remote debugging.">
+        <div class="vertical container" style="justify-content: flex-start; align-content: stretch;">
+            <div>Latency</div>
+            <div>Debugger</div>
         </div>
 
+        <div class="grow container"></div>
         <div class="citation container">
             <img class="tiny logo" src="pictures/ugent.png" alt="Ghent University">
             <p class="citation">Gurdeep Singh, R., & Scholliers, C. (2019). WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.</p>
@@ -353,36 +355,9 @@ export function main() : void {<br>
     </section>
 
     <section class="ordered slide">
-        <h2 class="title">A PROTOTYPE: EDWARD</h2>
-    </section>
-
-    <section class="ordered slide"> <!-- 9 -->
-        <h2 class="title">Capturing a Debug Session</h2>
-        <div class="grow container">
-            <img class="scaled" src="pictures/capture.svg" alt="Capturing a remote debugging session.">
-        </div>
-        <!-- since non-transferable resources are handled by the remote device, capturing and transfering the debug session comes down to capturing the state of the vm. -->
-    </section>
-
-    <section class="ordered slide">
         <h2 class="title">Distinquishing Non-transferable Resources</h2>
         <div class="grow container">
             <img class="scaled screenshot" src="pictures/distinguish-1.png" alt="Distinquishing nontransferable resources.">
-        </div>
-    </section>
-
-    <section class="ordered slide">
-        <h2 class="title">Distinquishing Non-transferable Resources</h2>
-        <div class="grow container">
-            <img class="scaled screenshot" src="pictures/distinguish-2.png" alt="Distinquishing nontransferable resources.">
-        </div>
-    </section>
-
-    <section class="ordered slide"> <!-- 7 -->
-        <h2 class="title">Pull-based Resources</h2>
-        <div class="grow container">
-            <img class="scaled" src="pictures/pullbased.svg" alt="Pull-based remote debugging.">
-        <!-- TODO: make figure horizontal -->
         </div>
     </section>
 
@@ -397,6 +372,26 @@ export function main() : void {<br>
         <h2 class="title">Distinquishing Non-transferable Resources</h2>
         <div class="grow container">
             <img class="scaled screenshot" src="pictures/distinguish-3.png" alt="Distinquishing nontransferable resources.">
+        </div>
+    </section>
+
+    <section class="ordered slide">
+        <h2 class="title">A PROTOTYPE: EDWARD</h2>
+    </section>
+
+    <section class="ordered slide"> <!-- 9 -->
+        <h2 class="title">Capturing a Debug Session</h2>
+        <div class="grow container">
+            <img class="scaled" src="pictures/capture.svg" alt="Capturing a remote debugging session.">
+        </div>
+        <!-- since non-transferable resources are handled by the remote device, capturing and transfering the debug session comes down to capturing the state of the vm. -->
+    </section>
+
+    <section class="ordered slide"> <!-- 7 -->
+        <h2 class="title">Pull-based Resources</h2>
+        <div class="grow container">
+            <img class="scaled" src="pictures/pullbased.svg" alt="Pull-based remote debugging.">
+        <!-- TODO: make figure horizontal -->
         </div>
     </section>
 
