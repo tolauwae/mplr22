@@ -119,7 +119,7 @@
         <h2 class="title">A Device Issue</h2>
         <div class="grow container gap">
             <img id="hardwarediagram" class="scaled" src="pictures/hardware-setup.svg">
-            <div style="font-size: small; visibility: hidden;">
+            <div class="hidden" style="font-size: small;">
 import * as wd from warduino;<br>
 const LED: u32 = 25; const BUTTON: u32 = 26;<br>
 <br>
@@ -252,28 +252,46 @@ export function main() : void {<br>
         </div>
     </section>
 
-    <!--
     <section class="ordered slide">
         <h2 class="title">The Advantages</h2>
-        <div class="grow container">
-
+        <div class="grow vertical leftalign container">
+        Remote debugging offers:
+        <ul>
+            <li>the ability to debug real hardware</li>
+            <li>access to a traditional debugger</li>
+        </ul>
         </div>
         <div class="citation container">
             <img class="tiny logo" src="pictures/ugent.png" alt="Ghent University">
             <p class="citation">Gurdeep Singh, R., & Scholliers, C. (2019). WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.</p>
         </div>
-    </section>-->
+    </section>
 
     <section class="ordered slide">
         <h2 class="title">The Disadvantages</h2>
-        <!--    TODO the same image but annotated to show:
-            - latency
-            - debugger runs on mcu along side vm (constraint resources) -->
         <div class="grow vertical container">
-            <div class="grow leftalign container">
+            <div class="grow leftalign centeritems container">
             <img class="medium logo" src="pictures/constraint-debugger.svg" alt="WARDuino repo."> <span class="">Debugger runs on constraint devices.</span>
             </div>
-            <div class="grow leftalign container">
+            <div class="grow leftalign centeritems container hidden">
+            <img class="medium logo" src="pictures/latency.svg" alt="WARDuino VSCode repo."> <span class="">Each debug operation requires communication with a remote device.</span>
+            </div>
+        </div>
+
+        <div class="grow container"></div>
+        <div class="citation container">
+            <img class="tiny logo" src="pictures/ugent.png" alt="Ghent University">
+            <p class="citation">Gurdeep Singh, R., & Scholliers, C. (2019). WARDuino: A Dynamic WebAssembly Virtual Machine for Programming Microcontrollers.</p>
+        </div>
+    </section>
+
+    <section class="ordered slide">
+        <h2 class="title">The Disadvantages</h2>
+        <div class="grow vertical container">
+            <div class="grow leftalign centeritems container">
+            <img class="medium logo" src="pictures/constraint-debugger.svg" alt="WARDuino repo."> <span class="">Debugger runs on constraint devices.</span>
+            </div>
+            <div class="grow leftalign centeritems container">
             <img class="medium logo" src="pictures/latency.svg" alt="WARDuino VSCode repo."> <span class="">Each debug operation requires communication with a remote device.</span>
             </div>
         </div>
@@ -321,10 +339,6 @@ export function main() : void {<br>
         <div class="grow container">
             <img class="scaled" src="pictures/out-of-place.svg" alt="Move debugging process to the desktop environment."> <!-- TODO add images as background imag -->
         </div>
-        <div class="citation container">
-            <img class="tiny logo" src="pictures/vub.jpg" alt="Vrije Universiteit Brussel">
-            <p class="citation">Marra, M., Polito, G., & Gonzalez Boix, E. (2018). Out-of-place debugging: A debugging architecture to reduce debugging interference. The Art, Science, and Engineering of Programming</p>
-        </div>
         <!-- This is where out-of-place debugging comes in. You can see the attraction. We simply move the debugging process to the developer's machine. No more latency or constraint resources to keep in mind.
             But we cannot actually move the debugging process like that because it means also moving the vm and executing on the developer's machine.
         -->
@@ -335,20 +349,12 @@ export function main() : void {<br>
         <div class="grow container">
         <img class="scaled" src="pictures/moving-backend.svg" alt="Move debugging process to the desktop environment.">
         </div>
-        <div class="citation container">
-            <img class="tiny logo" src="pictures/vub.jpg" alt="Vrije Universiteit Brussel">
-            <p class="citation">Marra, M., Polito, G., & Gonzalez Boix, E. (2018). Out-of-place debugging: A debugging architecture to reduce debugging interference. The Art, Science, and Engineering of Programming</p>
-        </div>
     </section>
 
     <section class="ordered slide">
         <h2 class="title">Remote + Local Debugging</h2>
         <div class="grow container">
             <img class="scaled" src="pictures/remotelocal.svg" alt="Move debugging process to the desktop environment."> <!-- TODO add images as background imag -->
-        </div>
-        <div class="citation container">
-            <img class="tiny logo" src="pictures/vub.jpg" alt="Vrije Universiteit Brussel">
-            <p class="citation">Marra, M., Polito, G., & Gonzalez Boix, E. (2018). Out-of-place debugging: A debugging architecture to reduce debugging interference. The Art, Science, and Engineering of Programming</p>
         </div>
         <!-- This is where out-of-place debugging comes in. You can see the attraction. We simply move the debugging process to the developer's machine. No more latency or constraint resources to keep in mind.
             But we cannot actually move the debugging process like that because it means also moving the vm and executing on the developer's machine.
@@ -359,10 +365,6 @@ export function main() : void {<br>
         <h2 class="title">Non-transferable Resources</h2>
         <div class="grow container">
             <img class="scaled" src="pictures/ntr.svg" alt="Non-transferable resources cannot be moved to the desktop environment.">
-        </div>
-        <div class="citation container">
-            <img class="tiny logo" src="pictures/vub.jpg" alt="Vrije Universiteit Brussel">
-            <p class="citation">Marra, M., Polito, G., & Gonzalez Boix, E. (2018). Out-of-place debugging: A debugging architecture to reduce debugging interference. The Art, Science, and Engineering of Programming</p>
         </div>
         <!--
             The non-transferable resources are the major challenge.
@@ -436,13 +438,14 @@ export function main() : void {<br>
 
     <section class="ordered slide"> <!-- 13 -->
         <h2 class="title">Requirements</h2>
+        <div class="grow vertical leftalign container">
         To implement a out-of-place debugger you need a vm that can:
         <ul>
             <li>capture the state of the vm</li>
             <li>support pull-based debug messages</li>
             <li>support push-based debug messages to forward events</li>
         </ul>
-        <div class="grow container"></div>
+        </div>
     </section>
 
     <section class="ordered slide"> <!-- 10 -->

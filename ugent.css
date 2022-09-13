@@ -13,6 +13,10 @@ body {
     padding-top: 0;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 .ordered {
     display: flex;
     height: 100%;
@@ -80,7 +84,13 @@ section.title h2.title {
 
 .leftalign {
     justify-content: flex-start;
+    align-items: flex-start;
     align-content: stretch;
+    text-align: left;
+}
+
+.centeritems {
+    align-items: center;
 }
 
 .gap {
