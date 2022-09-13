@@ -119,7 +119,7 @@
         <h2 class="title">A Device Issue</h2>
         <div class="grow container gap">
             <img id="hardwarediagram" class="scaled" src="pictures/hardware-setup.svg">
-            <pre style="font-size: small; visibility: hidden;">
+            <div style="font-size: small; visibility: hidden;">
 import * as wd from warduino;<br>
 const LED: u32 = 25; const BUTTON: u32 = 26;<br>
 <br>
@@ -131,7 +131,7 @@ export function main() : void {<br>
   wd.interruptOn(BUTTON, wd.FALLING, buttonPressed);<br>
   while(true);<br>
 }<br>
-            </pre>
+            </div>
         </div>
     </section>
 
@@ -139,19 +139,19 @@ export function main() : void {<br>
         <h2 class="title">A Device Issue</h2>
         <div class="grow container gap">
             <img id="hardwarediagram" class="scaled" src="pictures/hardware-setup.svg">
-            <pre style="font-size: small">
-import * as wd from warduino;<br>
-const LED: u32 = 25; const BUTTON: u32 = 26;<br>
-<br>
-function buttonPressed(): void {<br>
-  wd.digitalWrite(LED, !wd.digitalRead(LED));<br>
-}<br>
-<br>
-export function main() : void {<br>
-  wd.interruptOn(BUTTON, wd.FALLING, buttonPressed);<br>
-  while(true);<br>
-}<br>
-            </pre>
+            <div style="font-size: small">
+                <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> wd <span class="hljs-keyword">from</span> warduino;<br>
+                <span class="hljs-keyword">const</span> <span class="hljs-attr">LED</span>: u32 = <span class="hljs-number">25</span>; <span class="hljs-keyword">const</span> <span class="hljs-attr">BUTTON</span>: u32 = <span class="hljs-number">26</span>;<br>
+                <br>
+                <span class="hljs-keyword">function</span> <span class="hljs-title function_">buttonPressed</span>(<span class="hljs-params"></span>): <span class="hljs-built_in">void</span> {<br>
+                wd.<span class="hljs-title function_">digitalWrite</span>(<span class="hljs-variable constant_">LED</span>, !wd.<span class="hljs-title function_">digitalRead</span>(<span class="hljs-variable constant_">LED</span>));<br>
+  }<br>
+  <br>
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>) : <span class="hljs-built_in">void</span> {<br>
+  wd.<span class="hljs-title function_">interruptOn</span>(<span class="hljs-variable constant_">BUTTON</span>, wd.<span class="hljs-property">FALLING</span>, buttonPressed);<br>
+  <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>);<br>
+  }<br>
+            </div>
         </div>
     </section>
 
@@ -166,21 +166,25 @@ export function main() : void {<br>
         <h2 class="title">A Device Issue</h2>
         <div class="grow container gap">
             <img id="hardwarediagram" class="scaled" src="pictures/hardware-setup.svg">
-            <pre style="font-size: small">
-import * as wd from warduino;<br>
-const LED: u32 = 25; const BUTTON: u32 = 26;<br>
-<br>
-function buttonPressed(): void {<br>
-const current: u32 = wd.digitalRead(LED);<br>
-wd.print(`Entered callback: LED = ${current}`)<br>
-wd.digitalWrite(LED, !current);<br>
-}<br>
-<br>
-export function main() : void {<br>
-  wd.interruptOn(BUTTON, wd.FALLING, buttonPressed);<br>
-  while(true);<br>
-}<br>
-            </pre>
+            <div style="font-size: small">
+                <span class="grey">
+                import * as wd from warduino;<br>
+                const LED: u32 = 25; const BUTTON: u32 = 26;<br>
+                </span>
+                <br>
+                <span class="hljs-keyword">function</span> <span class="hljs-title function_">buttonPressed</span>(<span class="hljs-params"></span>): <span class="hljs-built_in">void</span> {<br>
+                <span class="hljs-keyword">const</span> <span class="hljs-attr">current</span>: u32 = wd.<span class="hljs-title function_">digitalRead</span>(<span class="hljs-variable constant_">LED</span>);<br>
+                wd.<span class="hljs-title function_">print</span>(<span class="hljs-string">`Entered callback: LED = <span class="hljs-subst">${current}</span>`</span>)<br>
+                wd.<span class="hljs-title function_">digitalWrite</span>(<span class="hljs-variable constant_">LED</span>, !current);<br>
+                }<br>
+                <br>
+                <span class="grey">
+                export function main() : void {<br>
+                wd.interruptOn(BUTTON, wd.FALLING, buttonPressed);<br>
+                while(true);<br>
+                }<br>
+                </span>
+            </div>
         </div>
     </section>
 
